@@ -1,0 +1,11 @@
+#!/bin/bash
+CPU_THRESHOLD=80
+
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | sed "s/.*,*\([0-9]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+
+
+#check if cpu exceeds threshold
+
+if (( $(echo "$CPU_USAGE > $CPU_THRESHOLD" |  bc -l) )); then
+		echo "ALERT: CPU IS ABOVE $CPU_THRESHOLD%. CURRENT USAGE IS $CPU_USAGE%"
+fi

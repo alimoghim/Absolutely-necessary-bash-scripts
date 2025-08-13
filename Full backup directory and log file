@@ -1,0 +1,11 @@
+#!/bin/bash
+	  
+# Define backup directory and log file
+BACKUP_DIR="/mnt/backup"
+LOG_FILE="/var/log/rsync_backup.log"
+	 
+# Run rsync in background with nohup and log output
+nohup rsync -aAXv --exclude={"/proc","/tmp","/dev","/sys","/run"} / "$BACKUP_DIR" > "$LOG_FILE" 2>&1 &
+	  
+Notify user
+echo "Backup started in background. Check log at $LOG_FILE"

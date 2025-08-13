@@ -1,0 +1,11 @@
+#!/bin/bash
+
+RAM_THRESHOLD=80
+
+# Get total and used memory in percentage using free
+RAM_USAGE=$(free | awk '/Mem/ {printf("%.2f"), $3/$2 * 100}')
+
+# Check if RAM exceeds threshold
+if (( $(echo "$RAM_USAGE > $RAM_THRESHOLD" | bc -l) )); then
+	echo "ALERT: RAM USAGE IS ABOVE $RAM_THRESHOLD%. CURRENT USAGE IS ${RAM_USAGE}%"
+fi

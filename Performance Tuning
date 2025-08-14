@@ -1,0 +1,6 @@
+#!/bin/bash
+# Clear memory caches to free up resources
+sync; echo 3 > /proc/sys/vm/drop_caches 
+# Restart services to free up resources 
+systemctl restart nginx
+systemctl restart apache2

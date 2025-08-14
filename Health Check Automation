@@ -1,0 +1,10 @@
+#!/bin/bash
+# Check if web servers are running
+for server in "server1" "server2" "server3"; do
+  curl -s --head http://$server | head -n 1 | grep "HTTP/1.1 200 OK" > /dev/null 
+  if [ $? -ne 0 ]; then
+    echo "$server is down" 
+  else
+echo "$server is up"
+fi 
+done

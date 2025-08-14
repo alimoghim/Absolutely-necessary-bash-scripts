@@ -1,0 +1,5 @@
+#!/bin/bash
+# Check logs for error messages and send Slack notification 
+if grep -i "error" /var/log/myapp.log; then
+  curl -X POST -H 'Content-type: application/json' --data '{"text":"Error found in logs!"}' https://hooks.slack.com/services/your/webhook/url
+fi

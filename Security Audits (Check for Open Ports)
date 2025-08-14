@@ -1,0 +1,8 @@
+#!/bin/bash
+# Check for open ports
+OPEN_PORTS=$(netstat -tuln)
+# Check if any ports are open (excluding localhost)
+if [[ $OPEN_PORTS =~ "0.0.0.0" || $OPEN_PORTS =~ "127.0.0.1" ]]; then
+echo "Security Alert: Open ports detected!"
+echo "$OPEN_PORTS" | mail -s "Open Ports Security Alert" user@example.com else
+echo "No open ports detected." Fi

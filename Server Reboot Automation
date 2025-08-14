@@ -1,0 +1,5 @@
+#!/bin/bash
+# Reboot server during off-hours
+if [ $(date +%H) -ge 2 ] && [ $(date +%H) -lt 4 ]; then 
+  sudo reboot
+fi

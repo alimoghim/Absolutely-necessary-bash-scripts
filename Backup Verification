@@ -1,0 +1,9 @@
+#!/bin/bash
+# Verify backup files integrity
+for backup in /backups/*.tar.gz; do
+  if ! tar -tzf $backup > /dev/null 2>&1; then 
+    echo "Backup $backup is corrupted"
+  else
+    echo "Backup $backup is valid" 
+  fi
+done
